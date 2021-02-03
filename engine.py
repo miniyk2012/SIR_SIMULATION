@@ -16,8 +16,8 @@ class Person:
             0, engine.size), random.randrange(0, engine.size))
         self.home = self.position.copy()
         self.move_target = self.home.copy()
-        self.move_range = MOVE_RANGE
-        self.move_speed = MOVE_SPEED
+        self.move_range = engine.move_range
+        self.move_speed = engine.move_speed
         self.status = 'susceptible'  # 易感染的
         self.infectious_dur_left = 0
 
@@ -64,9 +64,11 @@ class Engine:
         self.population = population
         self.people = []
 
-    def create(self):
-        for i in range(self.population):
-            self.people.append(Person(self))
+    def create(self, env_variables):
+        for var, val in env_variables.items():
+            setattr(self, var, val)
+        print(self.population)
+        self.people = [Person(self) for _ in range(self.population)]
 
     def next_frame(self):
         for person in self.people:
