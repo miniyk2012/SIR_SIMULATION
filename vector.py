@@ -23,4 +23,5 @@ class Vector:
         return self.x == other.x and self.y == other.y
 
     def uniform(self, length):
-        return Vector(self.x / self.length, self.y / self.length)
+        """单位向量 * length"""
+        return Vector(self.x / self.length * length, self.y / self.length * length) 

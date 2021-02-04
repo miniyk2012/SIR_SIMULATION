@@ -67,8 +67,11 @@ class Engine:
     def create(self, env_variables):
         for var, val in env_variables.items():
             setattr(self, var, val)
-        print(self.population)
         self.people = [Person(self) for _ in range(self.population)]
+        
+        large_factor_people = random.sample(self.people, int(self.large_factor * self.population))
+        for person in large_factor_people:
+            person.move_range *= 10
 
     def next_frame(self):
         for person in self.people:
