@@ -68,7 +68,7 @@ class Interface:
         self.draw_people()
         self.draw_stats()
         self.data_queue.put({'type': 'data', 'data': self.stats.get('infectious', 0)})  # 感染人数时间序列新增数据, Plot进程能够收到新增的数据 
-        self.root.after(30, self.next_frame)
+        self.root.after(30, self.next_frame)  # 这样就可以不断得更新动画了
 
     def start(self):
         self.engine.create(self.env_variables)
