@@ -17,7 +17,7 @@ class Plot(multiprocessing.Process):
             elem = self.data_queue.get()
             if elem['type'] == 'data':
                 self.data.append(elem['data'])
-            elif elem['type'] == 'clear':
+            elif elem['type'] == 'clear':  # interface点击restart后, plot也要从头画起
                 self.data = []
         y = self.data
         x = list(range(1, len(self.data)+1))
